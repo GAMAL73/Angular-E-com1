@@ -1,0 +1,36 @@
+
+  @if (isLoading) {
+    <div class="flex justify-center items-center bg-white h-screen">
+      <span class="loader"></span>
+    </div>
+
+    }@else if(data) {
+      @if (data.totalCartPrice==0) {
+        <div class="flex justify-center items-center w-8/12 md:w-4/12 mx-auto h-screen md:h-full">
+          <img class="w-full" src="assets/img/empty-cart-button.jpg" alt="">
+        </div>
+      }@else {
+        <div class="container mx-auto bg-gray-200 p-3 md:p-5 my-5 h-full">
+          <h1 class="my-3 text-2xl md:text-4xl font-semibold">Shop Cart:</h1>
+          <p class="text-main text-lg md:text-xl font-medium">total Cart price: {{data.totalCartPrice |currency}}</p>
+          @for (p of data.products; track $index) {
+            <div class="flex flex-wrap items-center border-b border-main my-3 bg-slate-100">
+              <div class="md:w-1/12 w-3/12 md:p-3 p-1">
+                <img [src]="p.product.imageCover" class="w-full" alt="">
+              </div>
+              <div class="md:w-10/12 w-7/12 md:p-3 p-1">
+                <p class="capitalize text-sm md:text-lg font-medium my-2">{{p.product.title}}</p>
+                <span class="block text-sm my-2">Price: {{p.price|currency}}</span>
+                <span class=" text-sm md:text-lg my-2 cursor-pointer bg-red-500 text-white p-1 md:p-2 rounded-md" (click)="deleteProduct(p.product._id)"><i class="fa fa-trash text-yellow-400"></i> Remove</span>
+              </div>
+              <div class="md:w-1/12 w-3/12 md:p-3 p-1">
+                <button (click)="upDateProduct(p.product._id,p.count =p.count+1)" class="text-white rounded p-1 md:p-2 bg-green-400">+</button>
+                <span class="md:mx-2 mx-1">{{p.count}} </span>
+                <button [disabled]="p.count==1" (click)="upDateProduct(p.product._id,p.count =p.count-1)" class="text-white rounded p-1 md:p-2 bg-red-400">-</button>
+              </div>
+            </div>
+          }
+          <button  class="bg-main text-white font-semibold rounded-md px-8 py-4 mx-auto block hover:bg-green-700 my-4" [routerLink]="['/shippingAddress',data._id]">Order <i class="fa fa-dollar-sign"></i></button>
+        </div>
+      }
+  }

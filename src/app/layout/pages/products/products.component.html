@@ -1,0 +1,39 @@
+
+@if (isLoading) {
+  <div class="flex justify-center items-center bg-slate-50 h-screen">
+    <span class="loader"></span>
+  </div>
+}@else {
+  <div class="container mx-auto">
+    <div class="mx-auto w-3/4 mt-8 mb-5">
+      <input
+                  [(ngModel)]="userWord"
+                  placeholder="Search Product"
+                  class="w-full rounded-md border border-[#aaaaaa] bg-white py-3 px-6 text-base font-medium text-main outline-none focus:border-main focus:shadow-md"
+              />
+    </div>
+    <div class="flex flex-wrap">
+      @for (product of productList |search :userWord; track $index) {
+        <div class="md:w-2/12 p-3 cursor-pointer" >
+            <div class="productTheme  hover:border-main p-2">
+              <div [routerLink]="['/productDetails',product._id]">
+                      <img class="w-full" [src]="product.imageCover" alt="product">
+                      <span class="text-main text-sm">{{product.category.name}}</span>
+                      <h3 class="my-3 text-lg font-medium">{{product.title.split(' ').splice(0,2).join(' ')}}</h3>
+                    <div class="flex justify-between items-center mb-1">
+                      <span>{{product.price|currency }} EGP</span>
+                      <span>{{product.ratingsAverage}}<i class="fa fa-star text-yellow-400"></i></span>
+                    </div>
+                    <p class="my-2">{{date|date:'short'}}</p>
+              </div>
+              @if (cartLoading) {
+                <button (click)="AddProductToCart(product._id)" class="bg-main text-white rounded-md px-3 py-2 w-full translate-y-[100%] opacity-0 hover:bg-green-700 transition-all duration-500 relative"><i class="fa fa-spin fa-spinner text-white text-lg"></i></button>
+              }@else {
+                <button (click)="AddProductToCart(product._id)" class="bg-main text-white rounded-md px-3 py-2 w-full translate-y-[100%] opacity-0 hover:bg-green-700 transition-all duration-500">Add to Cart <i class="fa-solid fa-cart-plus"></i></button>
+              }
+              </div>
+        </div>
+      }
+    </div>
+  </div>
+}

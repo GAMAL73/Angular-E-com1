@@ -1,0 +1,19 @@
+
+@if (isLoading) {
+  <div class="flex justify-center items-center bg-slate-50 h-screen">
+    <span class="loader"></span>
+  </div>
+}@else {
+  <div class="container mx-auto">
+    <div class="flex flex-wrap my-5">
+      @for (brand of brandList; track $index) {
+        <div class="md:w-3/12 p-5 rounded-md cursor-pointer"  [routerLink]="['/brandDetails',brand._id]">
+          <div class=" border-main border border-solid text-center rounded-md hover:shadow-lg hover:shadow-green-200 transition-all duration-200 p-3">
+            <img class="w-full" [src]="brand.image" alt="">
+            <p class="text-3xl font-semibold text-main mt-3">{{brand.name}}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+}

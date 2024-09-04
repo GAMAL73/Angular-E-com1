@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@100;200;300;400;500;600;700;800;900&display=swap');
+body{
+  font-family: 'Encode Sans Expanded', sans-serif;
+}
+.productTheme{
+  transition: all 0.5s;
+}
+.productTheme:hover{
+  border-radius: 5px;
+  border: solid 1px;
+  box-shadow: 0 0 10px #11bd1168;
+}
+.productTheme:hover button{
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+

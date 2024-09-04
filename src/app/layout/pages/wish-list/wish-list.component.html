@@ -1,0 +1,49 @@
+@if (isLoading) {
+  <div class="flex justify-center items-center bg-white h-screen">
+    <div class="lds-heart text-red-600"><div></div></div>
+  </div>
+}@else {
+  @if (wishlist.length==0) {
+    <div class="flex justify-center items-center mx-auto h-screen">
+      <img class="w-1/4" src="assets/img/heart-broken-png.webp" alt="">
+    </div>
+  }@else{
+      <div class="container mx-auto p-5 my-5 h-full">
+        <h1 class="my-3 text-4xl font-semibold"><i class="fa-solid fa-heart text-red-600"></i> wishlist:</h1>
+          <div class="flex flex-wrap items-center border-b border-main my-10 py-10">
+            @for (p of wishlist; track $index) {
+              <div class=" w-full md:w-3/12 p-3">
+                  <div class="p-2 bg-slate-100">
+                    <div class="flex justify-center md:items-end items-center gap-x-3 text-center my-3">
+                      <div>
+                        <img class="w-10 mx-auto" [src]="p.category.image" [alt]="p.category.name">
+                        <p class="text-xs font-semibold">Category:{{p.category.name}}</p>
+                      </div>
+                      <div>
+                        <img [src]="p.brand.image" class="w-12 mx-auto" [alt]="p.brand.name">
+                        <p class="text-xs font-semibold">Brand:{{p.brand.name}}</p>
+                      </div>
+                    </div>
+                    <img class="w-full imgCover" [src]="p.imageCover" [alt]="p.title">
+                    <p class="font-light text-center my-2">{{p.title}}</p>
+                    <p class="font-light text-center my-2">Quantity :{{p.quantity}}</p>
+                    <div class="flex justify-between items-center my-2">
+                      <span>Sold is:{{p.sold}}</span>
+                      <span>{{p.ratingsAverage}}<i class="fa fa-star text-yellow-400"></i></span>
+                    </div>
+                    <div class="flex justify-between items-center my-3">
+                      <p class="font-bold">${{p.price}} EGP</p>
+                        <span (click)="deleteProduct(p._id)"><i class="fa-solid fa-heart text-2xl text-red-600"></i></span>
+                    </div>
+                  </div>
+              </div>
+          }
+          </div>
+      </div>
+  }
+
+}
+
+
+
+

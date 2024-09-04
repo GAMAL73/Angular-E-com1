@@ -1,0 +1,123 @@
+<div class="text-center p-12 h-screen">
+  <h2 class="md:text-4xl text-xl font-semibold mb-9 px-0 text-zinc-700 mx-auto">Shipping Address:</h2>
+  <div class="flex items-center justify-center w-full mx-auto md:w-3/4">
+      <form [formGroup]="ShippingAddress">
+        @if (errMsg) {
+          <div class="bg-red-200 px-6 py-4  my-1 rounded-md text-lg flex items-center max-w-lg">
+              <svg viewBox="0 0 24 24" class="text-red-600 w-5 h-5 sm:w-5 sm:h-5 mr-3">
+                  <path fill="currentColor"
+                    d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
+                  </path>
+              </svg>
+              <span class="text-red-800">{{errMsg}}</span>
+          </div>
+        }
+          <div class="relative my-4 h-15 w-full min-w-[300px] md:min-w-[200px]">
+            <input
+            formControlName="details"
+              class="peer h-full w-full rounded-[7px] border border-green-200 bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-green-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-green-200 placeholder-shown:border-t-green-200 focus:border-2 focus:border-teal-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-green-50"
+              placeholder=" "
+            />
+            <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-green-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-green-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-green-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-green-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-teal-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-teal-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-teal-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-green-500">
+              Details
+            </label>
+
+            @if (ShippingAddress.get('details')?.errors && ShippingAddress.get('details')?.touched) {
+              <div class="bg-red-200 px-5 py-2  my-1 rounded-md text-lg flex items-center max-w-lg">
+                <svg viewBox="0 0 24 24" class="text-red-600 w-5 h-5 sm:w-5 sm:h-5 mr-3">
+                    <path fill="currentColor"
+                      d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
+                    </path>
+                </svg>
+                @if (ShippingAddress.get('details')?.errors?.['required']) {
+                  <span class="text-red-800"> Your Details is Required. </span>
+                }
+            </div>
+            }
+
+
+          </div>
+          <div class="relative my-4 h-15 w-full min-w-[300px] md:min-w-[200px]">
+            <input
+            formControlName="phone"
+              class="peer h-full w-full rounded-[7px] border border-green-200 bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-green-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-green-200 placeholder-shown:border-t-green-200 focus:border-2 focus:border-teal-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-green-50"
+              placeholder=" "
+            />
+            <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-green-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-green-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-green-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-green-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-teal-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-teal-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-teal-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-green-500">
+              Phone
+            </label>
+
+
+            @if (ShippingAddress.get('phone')?.errors && ShippingAddress.get('phone')?.touched) {
+              <div class="bg-red-200 px-5 py-2  my-1 rounded-md text-lg flex items-center max-w-lg">
+                <svg viewBox="0 0 24 24" class="text-red-600 w-5 h-5 sm:w-5 sm:h-5 mr-3">
+                    <path fill="currentColor"
+                      d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
+                    </path>
+                </svg>
+                @if (ShippingAddress.get('phone')?.errors?.['required']) {
+                  <span class="text-red-800"> Your phone is Required. </span>
+                }@else if (ShippingAddress.get('phone')?.errors?.['pattern']) {
+                  <span class="text-red-800"> Invalid Phone Number. </span>
+                }
+            </div>
+            }
+
+
+          </div>
+          <div class="relative my-4 h-15 w-full min-w-[300px] md:min-w-[200px]">
+            <input
+            formControlName="city"
+              class="peer h-full w-full rounded-[7px] border border-green-200 bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-green-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-green-200 placeholder-shown:border-t-green-200 focus:border-2 focus:border-teal-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-green-50"
+              placeholder=" "
+            />
+            <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-green-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-green-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-green-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-green-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-teal-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-teal-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-teal-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-green-500">
+              City
+            </label>
+
+
+            @if (ShippingAddress.get('city')?.errors && ShippingAddress.get('city')?.touched) {
+              <div class="bg-red-200 px-5 py-2  my-1 rounded-md text-lg flex items-center max-w-lg">
+                <svg viewBox="0 0 24 24" class="text-red-600 w-5 h-5 sm:w-5 sm:h-5 mr-3">
+                    <path fill="currentColor"
+                      d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
+                    </path>
+                </svg>
+                @if (ShippingAddress.get('city')?.errors?.['required']) {
+                  <span class="text-red-800"> Your city is Required. </span>
+                }@else if (ShippingAddress.get('city')?.errors?.['pattern']) {
+                  <span class="text-red-800"> Invalid city Number. </span>
+                }
+            </div>
+            }
+
+
+          </div>
+          <div class="text-center">
+              <button
+                  (click)="submitShippingAddress()"
+                  class="hover:shadow-form rounded-md bg-main py-2 px-4 md:px-8 text-base font-semibold mx-4 my-4 text-white outline-none hover:bg-green-700"
+                  [disabled]="ShippingAddress.invalid"
+              >
+                  @if (isLoading) {
+                    <span><i class="fa fa-spin fa-spinner"></i></span>
+                  }@else {
+                    <span>Check Out Visa <i class="fa-brands fa-cc-visa text-white"></i></span>
+                  }
+              </button>
+              <button
+              (click)="submitShippingAddressCash()"
+                  class="hover:shadow-form rounded-md bg-main py-2 px-4 md:px-8 text-base font-semibold mx-4 text-white outline-none hover:bg-green-700"
+                  [disabled]="ShippingAddress.invalid"
+              >
+                  @if (isLoading) {
+                    <span><i class="fa fa-spin fa-spinner"></i></span>
+                  }@else {
+                    <span>Check Out Cash <i class="fa-solid fa-wallet text-white"></i></span>
+                  }
+              </button>
+          </div>
+      </form>
+  </div>
+</div>
+

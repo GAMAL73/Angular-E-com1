@@ -1,0 +1,18 @@
+<div class="container mx-auto">
+  <div class="flex flex-wrap my-5">
+    @for (category of categoryList; track $index) {
+      <div class="md:w-3/12 w-full p-5" [routerLink]="['/CategoryDetails',category._id]">
+        <div class=" border-main border border-solid text-center rounded-md hover:shadow-lg hover:shadow-green-200 transition-all duration-200 p-3">
+          <img class="w-full" [src]="category.image" alt="">
+          <p class="text-3xl font-semibold text-main mt-3">{{category.name}}</p>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>
+@if (isLoading) {
+  <div class="flex justify-center items-center bg-slate-50 h-screen">
+    <span class="loader"></span>
+  </div>
+}

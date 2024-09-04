@@ -1,0 +1,30 @@
+@if (isLoading) {
+  <div class="flex justify-center items-center bg-slate-50 h-screen">
+    <div class="lds-ripple text-main"><div></div><div></div></div>
+  </div>
+}@else {
+  @if (product.data.length==0) {
+    <div class="flex justify-center items-center w-4/12 mx-auto">
+      <img class="w-full" src="assets/img/2748558.png" alt="">
+    </div>
+  }@else {
+    <div class="flex flex-wrap justify-center h-full">
+      @for (b of product.data; track $index) {
+        <div class="md:w-2/12 p-3 cursor-pointer">
+            <div class="productTheme  hover:border-main p-2">
+              <div>
+                      <img class="w-full" [src]="b.imageCover" alt="b">
+                      <span class="text-main text-sm">{{b.category.name}}</span>
+                      <h3 class="my-3 text-lg font-medium">{{b.title.split(' ').splice(0,2).join(' ')}}</h3>
+                    <div class="flex justify-between items-center mb-1">
+                      <span>{{b.price}} EGP</span>
+                      <span>{{b.ratingsAverage}}<i class="fa fa-star text-yellow-400"></i></span>
+                    </div>
+              </div>
+              </div>
+        </div>
+      }
+    </div>
+  }
+
+}

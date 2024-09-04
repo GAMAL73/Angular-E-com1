@@ -1,0 +1,75 @@
+@if (isLoading) {
+  <div class="flex justify-center items-center bg-slate-50 h-screen">
+    <div class="loader"></div>
+  </div>
+
+}@else {
+  @for (o of orders; track $index) {
+    <div class="flex items-center justify-center bg-gray-200 antialiased py-16 h-screen">
+
+      <div class="w-full sm:w-1/2 lg:w-1/4 p-3 ">
+      <div class="w-full bg-white shadow-xl rounded-lg overflow-hidden">
+        <header class="text-center leading-tight pt-10 pb-6">
+          <h2 class="uppercase tracking-wide text-sm font-bold text-gray-700">Your Order</h2>
+          <div class=" text-gray-900 font-bold tracking-tight flex justify-center items-center">
+            <span class=" text-lg align-bottom">$</span>
+            <span class="text-2xl mx-2">{{[o.totalOrderPrice]}}</span>
+          </div>
+          <p class="text-gray-500">payment Type: {{o.paymentMethodType}}</p>
+        </header>
+        <div class="flex flex-col p-6 border-t border-gray-300 bg-gray-100">
+          <div class="flex-1 inline-flex items-center mb-3">
+            @if (o.isPaid==true) {
+              <div class="bg-green-300 mr-3 p-1 rounded-full">
+                <svg class="h-3 w-3 text-green-800 fill-current" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <polygon points="0 11 2 9 7 14 18 3 20 5 7 18"></polygon>
+                </svg>
+              </div>
+            }@else{
+              <div class="bg-red-300 mr-3 p-1 rounded-full">
+                <svg class="h-3 w-3 text-red-800 fill-current" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <line x1="0" y1="0" x2="20" y2="20" stroke="currentColor" stroke-width="2"/>
+                  <line x1="20" y1="0" x2="0" y2="20" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+            }
+            <p class="text-xs">isPaid <i class="fa-solid fa-money-check-dollar"></i></p>
+          </div>
+          <div class="flex-1 inline-flex items-center mb-3">
+              @if (o.isDelivered == true) {
+                <div class="bg-green-300 mr-3 p-1 rounded-full">
+                  <svg class="h-3 w-3 text-green-800 fill-current" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <polygon points="0 11 2 9 7 14 18 3 20 5 7 18"></polygon>
+                  </svg>
+                </div>
+              }@else {
+                <div class="bg-red-300 mr-3 p-1 rounded-full">
+                  <svg class="h-3 w-3 text-red-800 fill-current" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <line x1="0" y1="0" x2="20" y2="20" stroke="currentColor" stroke-width="2"/>
+                    <line x1="20" y1="0" x2="0" y2="20" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                </div>
+              }
+            <p class="text-xs">is Delivered <i class="fa-solid fa-truck text-main"></i></p>
+          </div>
+          <div class="flex-1 inline-flex flex-col pt-10 text-start w-8/12 mx-auto justify-center items-center">
+            <p class="text-xs"><i class="fa-solid fa-envelope text-main"></i> Email: {{o.user.email}} </p>
+            <p class="text-xs"><i class="fa-solid fa-signature text-main"></i> User Name: {{o.user.name}}</p>
+            <p class="text-xs"><i class="fa-solid fa-phone text-main"></i> Your phone: {{o.user.phone}}</p>
+          </div>
+        </div>
+        <div class="align-bottom my-3 mx-auto">
+          <owl-carousel-o [options]="customOptions">
+            @for (c of o.cartItems; track $index) {
+              <ng-template carouselSlide [id]="c.product._id">
+                <img [src]="c.product.imageCover" class="w-full" [alt]="c.product.title" [title]="c.product.title">
+              </ng-template>
+            }
+            </owl-carousel-o>
+        </div>
+      </div>
+      </div>
+    </div>
+  }
+}
+
